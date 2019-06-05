@@ -1,4 +1,4 @@
-module Types
+module InterfeceTypes
   module BaseInterface
     include GraphQL::Schema::Interface
   end

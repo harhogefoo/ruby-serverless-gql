@@ -1,12 +1,12 @@
 require_relative "base_input_object"
-require_relative "url"
+require_relative "../scalar_types/url_type"
 
-module Types
+module InputTypes
   class MemoInputType < BaseInputObject
     description "Memo input type"
 
     argument :title, String, required: true
     argument :description, String, required: false
-    argument :url, Types::Url, required: false
+    argument :url, ScalarTypes::UrlType, required: false
   end
 end
