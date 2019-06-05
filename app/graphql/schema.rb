@@ -1,6 +1,8 @@
 require "graphql"
-require_relative "query_type"
+require_relative "./types/query_type"
+require_relative "./types/mutation_type"
 
 class Schema < GraphQL::Schema
-  query QueryType
+  query Types::QueryType
+  mutation Types::MutationType
 end
