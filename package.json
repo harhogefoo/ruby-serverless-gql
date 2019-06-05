@@ -1,0 +1,16 @@
+{
+  "name": "serverless_ruby",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "sls": "serverless",
+    "dev": "serverless offline"
+  },
+  "dependencies": {
+    "serverless": "^1.44.1"
+  },
+  "devDependencies": {
+    "serverless-offline": "^5.0.1"
+  }
+}
