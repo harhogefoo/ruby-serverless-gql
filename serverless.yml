@@ -21,6 +21,7 @@ service: serverless-ruby # NOTE: update this with your service name
 
 plugins:
   - serverless-offline
+  - serverless-hooks-plugin
 
 provider:
   name: aws
@@ -109,3 +110,12 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+custom:
+  hooks:
+    package:initialize:
+      - bundle install --deployment
+    deploy:finalize:
+      - rm -fr .bundle
+      - rm -fr vendor
+      - bundle install

@@ -2648,6 +2648,11 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
+serverless-hooks-plugin@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/serverless-hooks-plugin/-/serverless-hooks-plugin-1.1.0.tgz#50bea148685b11096cee7a087cddcb49dfa8ef99"
+  integrity sha1-UL6hSGhbEQls7noIfN3LSd+o75k=
+
 serverless-offline@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/serverless-offline/-/serverless-offline-5.0.1.tgz#bafd1698db7fee69db7f2b5914918512810eb446"
