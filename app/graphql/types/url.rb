@@ -1,3 +1,5 @@
+require 'uri'
+
 require_relative "base_scalar"
 
 class Types::Url < Types::BaseScalar
