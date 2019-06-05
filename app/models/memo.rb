@@ -33,4 +33,9 @@ class Memo
       Memo.new(2, "Second memo", "Second name", "Second description", "https://fugafuga.com")
     ]
   end
+
+  def self.save
+    # TODO:
+    true
+  end
 end
