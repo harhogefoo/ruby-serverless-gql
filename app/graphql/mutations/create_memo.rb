@@ -8,6 +8,7 @@ module Mutations
     argument :memo, InputTypes::MemoInputType, required: true
 
     field :title, String, null: true
+    field :name, String, null: true
     field :description, String, null: true
     field :url, ScalarTypes::UrlType, null: true
     field :errors, [String], null: false
@@ -17,6 +18,7 @@ module Mutations
       if true then
         {
           title: memo[:title],
+          name: memo[:name],
           description: memo[:description],
           url: memo[:url],
           errors: nil

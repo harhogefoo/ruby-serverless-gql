@@ -1,9 +1,12 @@
 class Memo
-  attr_reader :id, :title, :description, :url
+  attr_reader(
+    :id, :title, :name, :description, :url
+  )
 
-  def initialize(id, title, description, url)
+  def initialize(id, title, name, description, url)
     @id = id
     @title = title
+    @name = name
     @description = description
     @url = url
   end
@@ -12,6 +15,7 @@ class Memo
     {
       id: id,
       title: title,
+      name: name,
       description: description,
       url: url
     }
@@ -25,8 +29,8 @@ class Memo
 
   def self.all
     @all ||= [
-      Memo.new(1, "First memo", "First description", "https://hogehoge.com"),
-      Memo.new(2, "Second memo", "Second description", "https://fugafuga.com")
+      Memo.new(1, "First memo", "First name", "First description", "https://hogehoge.com"),
+      Memo.new(2, "Second memo", "Second name", "Second description", "https://fugafuga.com")
     ]
   end
 end

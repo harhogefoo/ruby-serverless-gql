@@ -5,7 +5,8 @@ module InputTypes
   class MemoInputType < BaseInputObject
     description "Memo input type"
 
-    argument :title, String, required: true
+    argument :title, String, required: false
+    argument :name, String, required: false
     argument :description, String, required: false
     argument :url, ScalarTypes::UrlType, required: false
   end
