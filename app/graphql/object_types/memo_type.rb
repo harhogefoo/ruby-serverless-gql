@@ -11,5 +11,6 @@ module ObjectTypes
     field :name, String, null: true
     field :description, String, null: true
     field :url, ScalarTypes::UrlType, null: true
+    field :errors, [String], null: true
   end
 end
