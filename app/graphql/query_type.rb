@@ -4,6 +4,7 @@ require_relative "../models/memo"
 class QueryType < GraphQL::Schema::Object
   description "The query root of this schema"
 
+  # Memo一覧取得
   field :memos, [ObjectTypes::MemoType], null: true do
     description "Find all memo"
   end
@@ -29,6 +30,7 @@ class QueryType < GraphQL::Schema::Object
     result.map{ |memo| memo.to_h }
   end
 
+  # Memo1つ取得
   field :memo, ObjectTypes::MemoType, null: true do
     description "Find a memo by id"
     argument :id, ID, required: true
