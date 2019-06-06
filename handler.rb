@@ -4,7 +4,7 @@ require 'json'
 require 'aws-sdk-core'
 require_relative 'app/graphql/schema'
 
-def graphql(event:)
+def graphql(event:, context:)
   Aws.config.update(endpoint: 'http://localhost:8000') if event['isOffline']
 
   body = JSON.parse(event['body'])
@@ -31,6 +31,9 @@ rescue StandardError => e
 
   {
     statusCode: 400,
+    headers: {
+      'Access-Control-Allow-Origin' => '*'
+    },
     body: JSON.generate('Bad request, please POST a request body!')
   }
 end

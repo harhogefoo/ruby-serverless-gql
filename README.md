@@ -6,6 +6,7 @@ yarn
 serverless dynamodb install
 
 bundle
+gem install rubocop
 ```
 
 # Local Debugging
