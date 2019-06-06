@@ -51,6 +51,8 @@ build-iPhoneSimulator/
 
 # Serverless directories
 .serverless
+.dynamodb
 
 # package directories
 node_modules
+

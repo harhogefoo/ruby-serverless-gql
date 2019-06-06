@@ -16,20 +16,27 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(memo:)
-      # TODO: DynamoDBに接続して保存処理を行う
-      if Memo.save then
+      newMemo = Memo.new(
+        id: SecureRandom.uuid,
+        user_id: "user",
+        title: memo[:title],
+        name: memo[:name],
+        description: memo[:description],
+        url: memo[:url]
+      )
+      if newMemo.save then
+        m = newMemo.to_h
         {
-          id: 'unique',
-          title: memo[:title],
-          name: memo[:name],
-          description: memo[:description],
-          url: memo[:url],
+          id: m[:id],
+          title: m[:title],
+          name: m[:name],
+          description: m[:description],
+          url: m[:url],
           errors: nil
         }
       else
-        # TODO: 保存に失敗した場合エラーを返す
         {
-          errors: nil
+          errors: newMemo.errors
         }
       end
     end

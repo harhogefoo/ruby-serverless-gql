@@ -8,11 +8,10 @@
     "dev": "serverless offline",
     "deploy": "serverless deploy"
   },
-  "dependencies": {
-    "serverless": "^1.44.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "serverless-hooks-plugin": "^1.1.0",
+    "serverless-dynamodb-local": "0.2.35",
     "serverless-offline": "^5.0.1"
   }
 }

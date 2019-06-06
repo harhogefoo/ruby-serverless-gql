@@ -23,6 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-record (~> 2)
+  aws-sdk-core
   graphql
 
 BUNDLED WITH

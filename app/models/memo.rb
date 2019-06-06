@@ -1,15 +1,28 @@
+require 'aws-record'
+
+
 class Memo
+  include Aws::Record
+
+  set_table_name 'memo'
+  string_attr :id, hash_key: true
+  string_attr :user_id, range_key: true
+  string_attr :title
+  string_attr :name
+  string_attr :description
+  string_attr :url
+
   attr_reader(
     :id, :title, :name, :description, :url
   )
 
-  def initialize(id, title, name, description, url)
-    @id = id
-    @title = title
-    @name = name
-    @description = description
-    @url = url
-  end
+  # def initialize(id, title, name, description, url)
+  #   @id = id
+  #   @title = title
+  #   @name = name
+  #   @description = description
+  #   @url = url
+  # end
 
   def to_hash
     {
@@ -34,8 +47,8 @@ class Memo
     ]
   end
 
-  def self.save
-    # TODO:
-    true
-  end
+  # def self.save
+  #   # TODO:
+  #   true
+  # end
 end
