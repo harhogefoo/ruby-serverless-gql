@@ -3,11 +3,8 @@ require_relative 'app/graphql/schema'
 
 def graphql(event:, context:)
   body = JSON.parse(event["body"])
-  query = body["query"]
-  variables = body["variables"]
-  operation_name = body["operationName"]
 
-  body = Schema.execute(
+  result = Schema.execute(
     query: body["query"],
     variables: body["variables"],
     operation_name: body["operationName"]
@@ -18,7 +15,7 @@ def graphql(event:, context:)
     headers: {
       "Access-Control-Allow-Origin" => "*"
     },
-    body: JSON.generate(body)
+    body: JSON.generate(result)
   }
 rescue StandardError => e
   puts e.message
