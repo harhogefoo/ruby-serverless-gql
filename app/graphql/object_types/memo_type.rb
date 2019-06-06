@@ -1,9 +1,11 @@
-require_relative "base_object"
-require_relative "../scalar_types/url_type"
+# frozen_string_literal: true
+
+require_relative 'base_object'
+require_relative '../scalar_types/url_type'
 
 module ObjectTypes
   class MemoType < BaseObject
-    description "A memo"
+    description 'A memo'
     field :id, ID, null: true
     field :title, String, null: true
     field :name, String, null: true

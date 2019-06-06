@@ -1,12 +1,14 @@
-require_relative "./object_types/memo_type"
-require_relative "../models/memo"
+# frozen_string_literal: true
+
+require_relative './object_types/memo_type'
+require_relative '../models/memo'
 
 class QueryType < GraphQL::Schema::Object
-  description "The query root of this schema"
+  description 'The query root of this schema'
 
   # Memo一覧取得
   field :memos, [ObjectTypes::MemoType], null: true do
-    description "Find all memo"
+    description 'Find all memo'
   end
 
   def memos
@@ -21,18 +23,18 @@ class QueryType < GraphQL::Schema::Object
 
     params = {
       table_name: 'memo',
-      expression_attribute_names: {'#user_id' => 'user_id'},
-      expression_attribute_values: {':user_id' => user_id},
+      expression_attribute_names: { '#user_id' => 'user_id' },
+      expression_attribute_values: { ':user_id' => user_id },
       key_condition_expression: '#user_id = :user_id',
-      index_name: 'userIdGSI',
+      index_name: 'userIdGSI'
     }
     result = Memo.query(params)
-    result.map{ |memo| memo.to_h }
+    result.map(&:to_h)
   end
 
   # Memo1つ取得
   field :memo, ObjectTypes::MemoType, null: true do
-    description "Find a memo by id"
+    description 'Find a memo by id'
     argument :id, ID, required: true
   end
 

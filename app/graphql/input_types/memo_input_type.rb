@@ -1,9 +1,11 @@
-require_relative "base_input_object"
-require_relative "../scalar_types/url_type"
+# frozen_string_literal: true
+
+require_relative 'base_input_object'
+require_relative '../scalar_types/url_type'
 
 module InputTypes
   class MemoInputType < BaseInputObject
-    description "Memo input type"
+    description 'Memo input type'
 
     argument :id, ID, required: false
     argument :title, String, required: false

@@ -1,8 +1,10 @@
-require_relative "base_mutation"
-require_relative "../scalar_types/url_type"
-require_relative "../object_types/memo_type"
-require_relative "../input_types/memo_input_type"
-require_relative "../../models/memo"
+# frozen_string_literal: true
+
+require_relative 'base_mutation'
+require_relative '../scalar_types/url_type'
+require_relative '../object_types/memo_type'
+require_relative '../input_types/memo_input_type'
+require_relative '../../models/memo'
 
 module Mutations
   class UpdateMemo < Mutations::BaseMutation
@@ -16,25 +18,25 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(memo:)
-      inputMemo = memo.to_h
+      input_memo = memo.to_h
       user_id = context[:user_id]
       unless user_id
         return {
           errors: ['user_id was not set']
         }
       end
-      currentMemo = Memo.find(id: inputMemo[:id], user_id: user_id)
-      unless currentMemo
+      current_memo = Memo.find(id: input_memo[:id], user_id: user_id)
+      unless current_memo
         return {
-          errors: ["memo not found"]
+          errors: ['memo not found']
         }
       end
-      inputMemo.delete(:id)
-      if currentMemo.update(inputMemo) then
-        currentMemo.to_h
+      input_memo.delete(:id)
+      if current_memo.update(input_memo)
+        current_memo.to_h
       else
         {
-          errors: currentMemo.errors
+          errors: current_memo.errors
         }
       end
     end

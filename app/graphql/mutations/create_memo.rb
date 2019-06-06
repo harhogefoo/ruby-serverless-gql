@@ -1,8 +1,10 @@
-require_relative "base_mutation"
-require_relative "../scalar_types/url_type"
-require_relative "../object_types/memo_type"
-require_relative "../input_types/memo_input_type"
-require_relative "../../models/memo"
+# frozen_string_literal: true
+
+require_relative 'base_mutation'
+require_relative '../scalar_types/url_type'
+require_relative '../object_types/memo_type'
+require_relative '../input_types/memo_input_type'
+require_relative '../../models/memo'
 
 module Mutations
   class CreateMemo < Mutations::BaseMutation
@@ -22,7 +24,7 @@ module Mutations
           errors: ['user_id was not set']
         }
       end
-      newMemo = Memo.new(
+      new_memo = Memo.new(
         id: SecureRandom.uuid,
         user_id: user_id,
         title: memo[:title],
@@ -30,11 +32,11 @@ module Mutations
         description: memo[:description],
         url: memo[:url]
       )
-      if newMemo.save then
-        newMemo.to_h
+      if new_memo.save
+        new_memo.to_h
       else
         {
-          errors: newMemo.errors
+          errors: new_memo.errors
         }
       end
     end
