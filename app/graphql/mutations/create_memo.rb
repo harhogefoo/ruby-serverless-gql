@@ -16,24 +16,22 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(memo:)
+      user_id = context[:user_id]
+      unless user_id
+        return {
+          errors: ['user_id was not set']
+        }
+      end
       newMemo = Memo.new(
         id: SecureRandom.uuid,
-        user_id: "user",
+        user_id: user_id,
         title: memo[:title],
         name: memo[:name],
         description: memo[:description],
         url: memo[:url]
       )
       if newMemo.save then
-        m = newMemo.to_h
-        {
-          id: m[:id],
-          title: m[:title],
-          name: m[:name],
-          description: m[:description],
-          url: m[:url],
-          errors: nil
-        }
+        newMemo.to_h
       else
         {
           errors: newMemo.errors

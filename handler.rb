@@ -7,10 +7,13 @@ def graphql(event:, context:)
 
   body = JSON.parse(event["body"])
 
+  user_id = event["headers"]["x-user-id"] # MEMO: 外部システムとして切り出す場合、JWTトークン検証などを行う必要がある
+
   result = Schema.execute(
     query: body["query"],
     variables: body["variables"],
-    operation_name: body["operationName"]
+    operation_name: body["operationName"],
+    context: { user_id: user_id }
   )
 
   {
@@ -21,9 +24,8 @@ def graphql(event:, context:)
     body: JSON.generate(result)
   }
 rescue StandardError => e
-  p e.full_message
-  #   puts e.message
-  # puts e.backtrace.inspect
+  puts e.full_message
+  puts e.backtrace.inspect
 
   {
     statusCode: 400,
