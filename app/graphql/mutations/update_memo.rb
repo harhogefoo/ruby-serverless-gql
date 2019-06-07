@@ -15,7 +15,7 @@ module Mutations
     field :name, String, null: true
     field :description, String, null: true
     field :url, ScalarTypes::UrlType, null: true
-    field :errors, [String], null: false
+    field :errors, [String], null: true
 
     def resolve(memo:)
       input_memo = memo.to_h

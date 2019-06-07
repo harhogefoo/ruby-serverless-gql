@@ -43,7 +43,7 @@ functions:
 
 resources:
   Resources:
-    BatonzImDynamoTable:
+    MemoDynamoTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: memo

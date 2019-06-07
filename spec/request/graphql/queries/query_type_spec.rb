@@ -31,7 +31,7 @@ RSpec.describe Schema do
       end
     end
 
-    context 'when has one memo' do
+    context 'when has a memo' do
       let(:user_id) { SecureRandom.uuid }
       let(:context) { { user_id: user_id } }
       before do
@@ -66,6 +66,7 @@ RSpec.describe Schema do
         }
       )
     end
+
     let(:query_string) { %({ memo(id: "#{uuid}") { title name errors } }) }
 
     context "when there's no user id" do
@@ -76,9 +77,23 @@ RSpec.describe Schema do
 
     context "when there's a current user" do
       let(:context) { { user_id: user_id } }
-      it 'shows the memo' do
-        expect(result['data']['memo']['title']).to eq('タイトル')
-        expect(result['data']['memo']['name']).to eq('名前')
+
+      context "when there's one memo(uuid is matched)" do
+        it 'shows the memo' do
+          expect(result['data']['memo']).to(
+            eq('errors' => nil, 'name' => '名前', 'title' => 'タイトル')
+          )
+        end
+      end
+
+      context "when there's no memo(uuid is not matched)" do
+        let(:query_string) { %({ memo(id: "notmatcheduuid") { title name errors } }) }
+
+        it "doesn't show the memo" do
+          expect(result['data']['memo']).to(
+            eq('errors' => nil, 'name' => nil, 'title' => nil)
+          )
+        end
       end
     end
   end
